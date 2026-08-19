@@ -18,6 +18,6 @@ export function SiteShell({locale, children}: {locale: Locale; children: React.R
       <WikiSidebar locale={locale} pathname={pathname} />
       <main className="site-main" id="main-content" tabIndex={-1}>{children}</main>
     </div>
-    <SiteFooter disclosure={t('footer.disclosure')} />
+    <SiteFooter locale={locale} disclosure={t('footer.disclosure')} />
   </div>;
 }

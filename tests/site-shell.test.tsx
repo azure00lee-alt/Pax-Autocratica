@@ -3,6 +3,7 @@ import {render, screen} from '@testing-library/react';
 import {describe, expect, it} from 'vitest';
 import {Breadcrumb} from '@/components/breadcrumb';
 import {GuideCard} from '@/components/guide-card';
+import {SiteFooter} from '@/components/site-footer';
 import {WikiSidebar} from '@/components/wiki-sidebar';
 
 describe('shared wiki shell', () => {
@@ -22,8 +23,9 @@ describe('shared wiki shell', () => {
 
   it('renders a route-aware wiki navigation landmark', () => {
     render(<WikiSidebar locale="en" pathname="/en/guides" />);
-    expect(screen.getByRole('navigation', {name: /wiki navigation/i})).toBeInTheDocument();
-    expect(screen.getByRole('link', {name: /guides/i})).toHaveAttribute('aria-current', 'page');
+    const navigation = screen.getByRole('navigation', {name: /wiki navigation/i});
+    expect(navigation).toBeInTheDocument();
+    expect(navigation.querySelector('a[href="/en/guides"]')).toHaveAttribute('aria-current', 'page');
   });
 
   it('exposes the mobile wiki navigation disclosure', () => {
@@ -31,6 +33,13 @@ describe('shared wiki shell', () => {
     const summary = screen.getByText('Browse the wiki', {selector: 'summary'});
     expect(summary).toBeInTheDocument();
     expect(summary.closest('details')).not.toHaveAttribute('open');
+  });
+
+  it('renders desktop navigation outside the mobile disclosure', () => {
+    const {container} = render(<WikiSidebar locale="en" pathname="/en" />);
+    const desktopNavigation = screen.getByRole('navigation', {name: 'Wiki navigation'});
+    expect(desktopNavigation.closest('details')).toBeNull();
+    expect(container.querySelector('details.wiki-sidebar__mobile')).toBeInTheDocument();
   });
 
   it('keeps planned guide cards non-interactive', () => {
@@ -63,5 +72,14 @@ describe('shared wiki shell', () => {
       />
     );
     expect(screen.getByRole('link', {name: /阅读攻略/i})).toBeInTheDocument();
+  });
+
+  it('renders localized internal and official footer destinations', () => {
+    render(<SiteFooter locale="zh" disclosure="独立粉丝资源。" />);
+    expect(screen.getByRole('link', {name: '首页'})).toHaveAttribute('href', '/zh');
+    expect(screen.getByRole('link', {name: '攻略导航'})).toHaveAttribute('href', '/zh/guides');
+    expect(screen.getByRole('link', {name: '士兵与繁育'})).toHaveAttribute('href', '/zh/guides/soldiers-and-breeding');
+    expect(screen.getByRole('link', {name: '官方网站'})).toHaveAttribute('href', 'https://www.paxautocratica.com/');
+    expect(screen.getByRole('link', {name: 'Steam 官方页面'}).getAttribute('href')).toMatch(/store\.steampowered\.com/);
   });
 });

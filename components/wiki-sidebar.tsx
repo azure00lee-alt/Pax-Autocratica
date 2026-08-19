@@ -3,9 +3,7 @@ import {ExternalLink} from 'lucide-react';
 import {officialSteamUrl, wikiSections} from '@/lib/navigation';
 import type {Locale} from '@/lib/locale';
 
-function WikiNavigation({locale, pathname}: {locale: Locale; pathname: string}) {
-  const navigationLabel = locale === 'en' ? 'Wiki navigation' : 'Wiki 导航';
-
+function WikiNavigation({locale, pathname, navigationLabel}: {locale: Locale; pathname: string; navigationLabel: string}) {
   return <nav className="wiki-nav" aria-label={navigationLabel}>
     {wikiSections[locale].map((item) => 'href' in item
       ? <Link key={item.label} href={item.href} aria-current={pathname === item.href ? 'page' : undefined}>
@@ -21,10 +19,13 @@ function WikiNavigation({locale, pathname}: {locale: Locale; pathname: string}) 
 
 export function WikiSidebar({locale, pathname}: {locale: Locale; pathname: string}) {
   return <aside className="wiki-sidebar">
-    <details className="wiki-sidebar__desktop sidebar-card">
-      <summary className="wiki-sidebar__mobile">{locale === 'en' ? 'Browse the wiki' : '浏览 Wiki'}</summary>
+    <section className="wiki-sidebar__desktop sidebar-card">
       <p className="sidebar-eyebrow">{locale === 'en' ? 'Knowledge base' : '知识库'}</p>
-      <WikiNavigation locale={locale} pathname={pathname} />
+      <WikiNavigation locale={locale} pathname={pathname} navigationLabel={locale === 'en' ? 'Wiki navigation' : 'Wiki 导航'} />
+    </section>
+    <details className="wiki-sidebar__mobile sidebar-card">
+      <summary className="wiki-sidebar__mobile-summary">{locale === 'en' ? 'Browse the wiki' : '浏览 Wiki'}</summary>
+      <WikiNavigation locale={locale} pathname={pathname} navigationLabel={locale === 'en' ? 'Mobile wiki menu' : '移动 Wiki 菜单'} />
     </details>
     <section className="sidebar-card official-card" aria-labelledby="official-game-title">
       <p className="sidebar-eyebrow">{locale === 'en' ? 'Official game' : '官方游戏'}</p>

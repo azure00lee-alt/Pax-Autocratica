@@ -8,7 +8,7 @@ export function LanguageSwitcher({locale}: {locale: Locale}) {
   const pathname = usePathname();
 
   return (
-    <div className="language-switcher" aria-label="Language">
+    <div className="language-switcher" role="group" aria-label={locale === 'en' ? 'Language selector' : '语言选择'}>
       {(['en', 'zh'] as const).map((item) => (
         <Link key={item} href={switchLocalePath(pathname, item)} aria-current={item === locale ? 'page' : undefined}>
           {item === 'en' ? 'EN' : '中文'}

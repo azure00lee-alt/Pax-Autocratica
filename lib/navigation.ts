@@ -18,3 +18,4 @@ export const wikiSections = {
 } as const;
 
 export const officialSteamUrl = 'https://store.steampowered.com/app/1067360/Pax_Autocratica/';
+export const officialWebsiteUrl = 'https://www.paxautocratica.com/';
