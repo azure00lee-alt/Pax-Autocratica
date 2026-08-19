@@ -31,8 +31,8 @@ describe('guide content', () => {
   });
 
   it.each([
-    ['en', ['Wellbeing', 'Hunger', 'Exhaustion', 'Fear']],
-    ['zh', ['福祉', '饥饿', '疲惫', '恐惧']]
+    ['en', ['Fear', 'Happiness', 'Hunger', 'Loyalty']],
+    ['zh', ['恐惧', '幸福', '饥饿', '忠诚']]
   ] as const)('%s guide covers all four soldier condition readouts', (locale, labels) => {
     const source = getGuide(locale, 'soldiers-and-breeding')!.source;
     for (const label of labels) expect(source).toContain(label);
