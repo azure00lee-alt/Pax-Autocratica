@@ -17,5 +17,63 @@
   },
   "footer": {
     "disclosure": "Pax Autocratica Wiki is an independent fan resource and is not affiliated with Multiverse."
+  },
+  "Home": {
+    "hero": {
+      "eyebrow": "Independent guide hub",
+      "description": "Build a colony, manage its people, and defend it in a colony sim where every expedition becomes an FPS roguelite run.",
+      "stats": ["Multiverse", "Steam / Windows", "Colony Sim + FPS Roguelite", "Single-player"],
+      "primaryCta": "Soldiers & Breeding",
+      "secondaryCta": "All Guides",
+      "tertiaryCta": "View on Steam"
+    },
+    "start": {
+      "regionLabel": "Start exploring",
+      "title": "Start here",
+      "description": "Learn how soldiers, breeding, labor assignments, and colony conditions fit together before your next expedition."
+    },
+    "updates": {
+      "title": "Wiki progress",
+      "description": "The soldiers and breeding guide is ready. States, policies, production, and troubleshooting topics remain clearly marked as planned."
+    },
+    "popular": {
+      "title": "Popular guides",
+      "actionLabel": "Read guide",
+      "plannedLabel": "Planned",
+      "soldiers": {
+        "title": "Soldiers & Breeding",
+        "description": "Understand soldier roles, colony states, breeding prerequisites, labor allocation, and common blockers."
+      },
+      "states": {
+        "title": "States & Policies",
+        "description": "A planned reference for Fear, Happiness, Hunger, Loyalty, and the policies that influence a colony."
+      },
+      "economy": {
+        "title": "Economy & Production",
+        "description": "A planned guide to production chains, resources, and workforce priorities."
+      },
+      "troubleshooting": {
+        "title": "Troubleshooting",
+        "description": "Planned solutions for common colony and expedition problems."
+      }
+    },
+    "about": {
+      "eyebrow": "Official game overview",
+      "title": "About Pax Autocratica",
+      "description": "Developed by Multiverse for Steam on Windows, Pax Autocratica is a single-player Colony Sim + FPS Roguelite. Colony decisions revolve around four core states: Fear, Happiness, Hunger, and Loyalty.",
+      "officialAction": "Visit the official site",
+      "mediaAlt": "Official Pax Autocratica key art",
+      "mediaLabel": "Official Steam media"
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "question": "What kind of game is Pax Autocratica?",
+      "answer": "It combines colony management with first-person roguelite expeditions. You manage people and production at the colony, then take direct control during runs."
+    },
+    "finalCta": {
+      "eyebrow": "Build with a plan",
+      "title": "Ready to take control of the colony?",
+      "action": "Browse all guides"
+    }
   }
 }

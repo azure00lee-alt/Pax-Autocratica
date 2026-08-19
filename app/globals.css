@@ -83,6 +83,36 @@ a.guide-card:hover {border-color: color-mix(in srgb, var(--accent) 70%, var(--bo
 .callout--warning > strong {color: #f0a9c1;}
 .section-title {grid-column: 1 / -1; margin: 0; font-size: 1.5rem;}
 .guide-grid {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 32px;}
+.home-hero {display: grid; justify-items: center; gap: 20px; padding: 48px 24px 64px; text-align: center;}
+.eyebrow {color: var(--muted); font-size: .75rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase;}
+.home-hero h1 {margin: 0; font-size: 3rem; line-height: 1.05; letter-spacing: -.04em;}
+.hero-copy {max-width: 66ch; margin: 0; color: var(--muted); font-size: 1.0625rem; line-height: 1.75;}
+.stat-pills, .hero-actions {display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px;}
+.stat-pills span {padding: 5px 11px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); font-size: .75rem; font-weight: 650;}
+.hero-actions {margin-top: 4px;}
+.button {display: inline-flex; min-height: 44px; align-items: center; justify-content: center; padding: 9px 16px; border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: .875rem; font-weight: 750; transition: border-color 180ms ease-out, background-color 180ms ease-out;}
+.button:hover {border-color: color-mix(in srgb, var(--accent) 70%, var(--border)); background: var(--surface-soft);}
+.button--primary {border-color: var(--accent); background: var(--accent);}
+.button--primary:hover {border-color: #df1c38; background: #df1c38;}
+.home-split {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px;}
+.home-split .panel {position: relative; min-height: 196px; padding: 28px; overflow: hidden;}
+.home-split h2 {max-width: calc(100% - 44px); margin: 0; font-size: 1.25rem;}
+.home-split p {max-width: 54ch; margin: 12px 0 0; color: var(--muted);}
+.panel-index {position: absolute; top: 22px; right: 24px; color: color-mix(in srgb, var(--muted) 55%, transparent); font-size: .75rem; font-weight: 750; letter-spacing: .12em;}
+.popular-guides {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 64px;}
+.about-game {display: grid; grid-template-columns: minmax(0, .9fr) minmax(280px, 1.1fr); align-items: center; gap: 32px; margin-top: 80px;}
+.about-game__copy {display: grid; justify-items: start; gap: 14px;}
+.about-game h2, .faq h2, .final-cta h2 {margin: 0; font-size: 1.75rem; line-height: 1.2; letter-spacing: -.025em;}
+.about-game__copy p {margin: 0; color: var(--muted); line-height: 1.75;}
+.about-game__copy a {display: inline-flex; min-height: 44px; align-items: center; color: var(--cyan); font-size: .875rem; font-weight: 700;}
+.about-game .media-card img {aspect-ratio: 460 / 215;}
+.about-game .media-card figcaption {padding-block: 10px;}
+.faq {display: grid; gap: 24px; margin-top: 80px;}
+.faq details {border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);}
+.faq summary {min-height: 56px; padding: 15px 40px 15px 0; cursor: pointer; font-weight: 700;}
+.faq details p {max-width: 70ch; margin: 0; padding: 0 0 20px; color: var(--muted);}
+.final-cta {display: grid; justify-items: center; gap: 16px; margin-top: 80px; padding: 48px 24px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface-soft); text-align: center;}
+.final-cta .eyebrow {margin: 0;}
 .article > .media-card {margin-block: 32px;}
 .mdx-body {max-width: 72ch; font-size: 1rem; line-height: 1.75;}
 .mdx-body > * + * {margin-top: 16px;}
@@ -119,6 +149,14 @@ a.guide-card:hover {border-color: color-mix(in srgb, var(--accent) 70%, var(--bo
   .header-nav {display: none;}
   .page-intro h1, .article-hero h1 {font-size: clamp(2.1rem, 10vw, 3rem);}
   .guide-grid {grid-template-columns: minmax(0, 1fr);}
+  .home-hero {padding: 32px 0 48px;}
+  .home-hero h1 {font-size: clamp(2.1rem, 11vw, 3rem);}
+  .hero-actions {width: 100%; flex-direction: column; align-items: stretch;}
+  .home-split, .popular-guides, .about-game {grid-template-columns: minmax(0, 1fr);}
+  .home-split .panel {min-height: 0; padding: 24px;}
+  .popular-guides {margin-top: 48px;}
+  .about-game, .faq, .final-cta {margin-top: 64px;}
+  .final-cta {padding: 36px 20px;}
 }
 
 @media (prefers-reduced-motion: reduce) {

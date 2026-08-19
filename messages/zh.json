@@ -17,5 +17,63 @@
   },
   "footer": {
     "disclosure": "Pax Autocratica Wiki 是独立的粉丝资源，与 Multiverse 没有任何隶属关系。"
+  },
+  "Home": {
+    "hero": {
+      "eyebrow": "独立攻略中心",
+      "description": "建设殖民地、管理居民并守护家园；每次外出探索都会进入第一人称射击肉鸽战斗。",
+      "stats": ["Multiverse", "Steam / Windows", "殖民模拟 + FPS 肉鸽", "单人游戏"],
+      "primaryCta": "士兵与繁育",
+      "secondaryCta": "全部攻略",
+      "tertiaryCta": "前往 Steam"
+    },
+    "start": {
+      "regionLabel": "开始探索",
+      "title": "从这里开始",
+      "description": "下一次外出探索前，先了解士兵、繁育、劳动力分配与殖民地状态之间的关系。"
+    },
+    "updates": {
+      "title": "Wiki 进度",
+      "description": "“士兵与繁育”攻略现已完成；状态、政策、生产与故障解决等主题均明确标记为“计划中”。"
+    },
+    "popular": {
+      "title": "热门攻略",
+      "actionLabel": "阅读攻略",
+      "plannedLabel": "计划中",
+      "soldiers": {
+        "title": "士兵与繁育",
+        "description": "了解士兵职责、殖民地状态、繁育条件、劳动力分配与常见阻碍。"
+      },
+      "states": {
+        "title": "状态与政策",
+        "description": "计划整理恐惧、幸福、饥饿、忠诚四项核心状态及相关政策。"
+      },
+      "economy": {
+        "title": "经济与生产",
+        "description": "计划介绍生产链、资源与劳动力优先级。"
+      },
+      "troubleshooting": {
+        "title": "故障解决",
+        "description": "计划汇总殖民地经营与外出探索中的常见问题。"
+      }
+    },
+    "about": {
+      "eyebrow": "官方游戏概览",
+      "title": "关于 Pax Autocratica",
+      "description": "Pax Autocratica 由 Multiverse 开发，是一款面向 Steam / Windows 的单人殖民模拟 + FPS 肉鸽游戏。殖民地决策围绕恐惧、幸福、饥饿与忠诚四项核心状态展开。",
+      "officialAction": "访问官方网站",
+      "mediaAlt": "Pax Autocratica 官方主视觉图",
+      "mediaLabel": "Steam 官方媒体"
+    },
+    "faq": {
+      "title": "常见问题",
+      "question": "Pax Autocratica 是什么类型的游戏？",
+      "answer": "它把殖民地管理与第一人称肉鸽探索结合起来：你需要在基地管理居民与生产，并在外出探索时直接参与战斗。"
+    },
+    "finalCta": {
+      "eyebrow": "有计划地建设",
+      "title": "准备好接管殖民地了吗？",
+      "action": "浏览全部攻略"
+    }
   }
 }
