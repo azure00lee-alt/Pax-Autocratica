@@ -62,7 +62,7 @@ a.guide-card:hover {border-color: color-mix(in srgb, var(--accent) 70%, var(--bo
 .breadcrumb ol {display: flex; flex-wrap: wrap; align-items: center; margin: 0; padding: 0; gap: 4px; list-style: none;}
 .breadcrumb li {display: flex; align-items: center;}
 .breadcrumb li:not(:last-child)::after {content: "/"; margin-left: 4px; color: color-mix(in srgb, var(--muted) 65%, transparent);}
-.breadcrumb a {display: inline-flex; align-items: center; min-height: 44px; border-radius: 6px;}
+.breadcrumb a {display: inline-flex; align-items: center; min-width: 44px; min-height: 44px; border-radius: 6px;}
 .breadcrumb a:hover {color: var(--text);}
 .site-footer {width: min(1232px, calc(100% - 40px)); margin: 0 auto; padding: 24px 0 40px; border-top: 1px solid var(--border); color: var(--muted); font-size: .8125rem;}
 .site-footer p {margin: 0; max-width: 75ch;}
