@@ -1,0 +1,21 @@
+{
+  "brand": "Pax Autocratica Wiki",
+  "nav": {
+    "home": "Home",
+    "guides": "Guides",
+    "states": "States & Policies",
+    "economy": "Economy & Production",
+    "troubleshooting": "Troubleshooting"
+  },
+  "language": {
+    "english": "English",
+    "chinese": "Chinese"
+  },
+  "labels": {
+    "officialMedia": "Official media",
+    "planned": "Planned"
+  },
+  "footer": {
+    "disclosure": "Pax Autocratica Wiki is an independent fan resource and is not affiliated with Multiverse."
+  }
+}

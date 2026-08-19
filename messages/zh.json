@@ -1,0 +1,21 @@
+{
+  "brand": "Pax Autocratica Wiki",
+  "nav": {
+    "home": "首页",
+    "guides": "攻略导航",
+    "states": "状态与政策",
+    "economy": "经济与生产",
+    "troubleshooting": "故障解决"
+  },
+  "language": {
+    "english": "英语",
+    "chinese": "中文"
+  },
+  "labels": {
+    "officialMedia": "官方媒体",
+    "planned": "计划中"
+  },
+  "footer": {
+    "disclosure": "Pax Autocratica Wiki 是独立的粉丝资源，与 Multiverse 没有任何隶属关系。"
+  }
+}
