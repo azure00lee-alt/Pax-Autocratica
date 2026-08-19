@@ -1,41 +1,41 @@
-# Pax Autocratica Wiki — Three-Page Multilingual Site Design
+# Pax Autocratica Wiki——三页面多语言网站设计方案
 
-## Goal
+## 项目目标
 
-Build a new Pax Autocratica fan wiki in Next.js that closely reproduces the information architecture, spacing, dark visual system, navigation pattern, cards, article typography, and responsive behavior of `vvultimatum.net`, while using only Pax Autocratica branding, copy, imagery, and research.
+使用 Next.js 新建一个 Pax Autocratica 粉丝 Wiki。网站需要高度还原 `vvultimatum.net` 的信息架构、间距、深色视觉系统、导航模式、卡片、文章排版和响应式行为，同时只使用 Pax Autocratica 自身的品牌、文案、图片与研究资料。
 
-The first release contains three page types in English and Simplified Chinese:
+第一版包含三种页面类型，并同时提供英语和简体中文：
 
-- Home: `/en` and `/zh`
-- Guide index: `/en/guides` and `/zh/guides`
-- Guide article: `/en/guides/soldiers-and-breeding` and `/zh/guides/soldiers-and-breeding`
+- 首页：`/en` 和 `/zh`
+- 攻略导航页：`/en/guides` 和 `/zh/guides`
+- 攻略文章页：`/en/guides/soldiers-and-breeding` 和 `/zh/guides/soldiers-and-breeding`
 
-The root route `/` redirects to the preferred supported locale, defaulting to English.
+根路径 `/` 根据访问者偏好的受支持语言进行跳转，默认跳转到英文版。
 
-## Visual Reference Boundary
+## 视觉参考边界
 
-The site reproduces the reference site's layout language rather than its game content or source code. The implementation will match these visible patterns:
+网站复刻目标站的布局语言，但不复制其游戏内容或源代码。实现时匹配以下可见设计特征：
 
-- 64-pixel translucent dark top navigation
-- Wide three-column desktop shell with a central reading column and a right wiki-navigation rail
-- Near-black background, subtle borders, low-contrast secondary text, and white primary text
-- Large restrained headings, pill-shaped metadata, rounded bordered cards, and compact label typography
-- Home page hero followed by split feature panels and guide cards
-- Guide index with breadcrumb, wide media banner, description, callout, and three-column card grid
-- Article page with breadcrumb, title/deck/update date, media card, long-form MDX content, related links, and section navigation
-- Sticky desktop rail and a compact mobile menu in place of the rail
+- 64 像素高的半透明深色顶部导航栏
+- 宽屏三栏式桌面布局，中央为阅读区，右侧为 Wiki 导航栏
+- 近黑色背景、细微边框、低对比度次要文字和白色主要文字
+- 克制的大标题、胶囊形元数据、圆角描边卡片和紧凑的标签文字
+- 首页使用主视觉区、左右分栏功能面板和攻略卡片
+- 攻略导航页使用面包屑、宽幅媒体横幅、页面简介、提示框和三列卡片网格
+- 文章页使用面包屑、标题、摘要、更新日期、媒体卡片、MDX 长文、关联链接和章节导航
+- 桌面端使用吸附式右侧栏，移动端把右侧栏替换为紧凑菜单
 
-No VV: ULTIMATUM text, copyrighted page copy, or site-specific imagery will be included.
+网站不会包含任何 VV: ULTIMATUM 文案、受版权保护的页面内容或该站专属图片。
 
-## Technical Architecture
+## 技术架构
 
-Use Next.js with the App Router and TypeScript. Locale routing is implemented with `next-intl` and a `[locale]` route segment. English and Chinese use the same React layouts and components but separate navigation strings, metadata, and MDX documents.
+使用带 App Router 的 Next.js 和 TypeScript。通过 `next-intl` 与 `[locale]` 路由段实现多语言路由。英文和中文页面共用同一套 React 布局及组件，但分别维护导航文本、SEO 元数据和 MDX 文档。
 
-MDX is compiled locally at build time. Guide metadata is stored in frontmatter and supplies the listing card, breadcrumb, page metadata, update date, and related links. The rendered article body is the same authoritative content used for search metadata.
+MDX 内容在构建阶段于本地编译。攻略元数据保存在 frontmatter 中，用于生成导航页卡片、面包屑、页面元数据、更新日期和关联链接。文章正文和搜索元数据使用同一份权威内容来源。
 
-The project is fully static for this first release. It does not need a database, account system, live player statistics, or external runtime API.
+第一版网站完全静态化，不需要数据库、账号系统、实时玩家统计或运行时外部 API。
 
-## Project Structure
+## 项目目录结构
 
 ```text
 app/
@@ -69,101 +69,101 @@ messages/
   en.json
   zh.json
 public/
-  favicon assets
-  pax-autocratica media
+  favicon 图标资源
+  Pax Autocratica 媒体资源
 ```
 
-## Page Design
+## 页面设计
 
-### Home
+### 首页
 
-The first viewport follows the reference site's hierarchy: compact header, centered Pax Autocratica title and fan-wiki badge, two-sentence game summary, concise fact pills, and three calls to action. The primary CTA opens the Soldiers & Breeding guide, the secondary CTA opens the guide index, and the tertiary CTA points to the Steam store.
+首屏沿用目标站的视觉层级：紧凑的顶部导航、居中的 Pax Autocratica 标题和粉丝 Wiki 徽标、两句话的游戏简介、简洁的数据胶囊标签以及三个行动按钮。首要按钮进入“士兵与繁育”攻略，第二按钮进入攻略导航页，第三按钮进入 Steam 商店。
 
-Below the hero, two bordered panels introduce “Start Here” and a compact guide/update summary. A “Popular Guides” area uses the same quiet card styling and provides genuine Pax Autocratica topics without adding unfinished routes. Cards whose pages are not part of the first release are visually present as informational summaries but are not fake links.
+主视觉区下方设置两个描边面板，分别用于“从这里开始”和简洁的攻略或更新摘要。“热门攻略”区域沿用低调的卡片样式，展示真实的 Pax Autocratica 主题，但不创建未完成的虚假路由。第一版尚未制作的页面只作为信息摘要卡片展示，不提供虚假链接。
 
-The right rail lists the planned Pax Autocratica wiki sections and highlights the current route. It also includes a compact official-game card rather than the reference site's code widget, because Pax Autocratica has no codes system.
+右侧栏列出规划中的 Pax Autocratica Wiki 栏目，并高亮当前路由。由于 Pax Autocratica 不存在兑换码系统，侧栏使用紧凑的官方游戏卡片代替目标站的兑换码组件。
 
-### Guide Index
+### 攻略导航页
 
-The guide index uses `/guides`, matching the role of the reference site's `/races` page. It includes:
+攻略导航页使用 `/guides`，其页面角色对应目标站的 `/races`。页面包含：
 
-- Home / Guides breadcrumb
-- Wide Pax Autocratica media banner
-- “Pax Autocratica Guides” heading and localized introduction
-- A highlighted callout explaining that systems may change through updates
-- A guide-card grid led by Soldiers & Breeding
-- Planned-topic cards for state management, economy, decrees, and troubleshooting, marked as planned and left non-clickable until real pages exist
+- Home / Guides 面包屑
+- 宽幅 Pax Autocratica 媒体横幅
+- “Pax Autocratica Guides”标题和本地化简介
+- 用于说明游戏机制可能随更新改变的醒目提示框
+- 以“士兵与繁育”为首项的攻略卡片网格
+- 状态管理、经济、法令和故障解决等规划主题卡片；这些卡片标记为“规划中”，在真实页面完成前不可点击
 
-### Soldiers & Breeding Article
+### “士兵与繁育”文章页
 
-The article uses MDX and keeps the reference page's title/deck/date/media/section flow. The first version organizes the previously researched material into:
+文章使用 MDX，并保留目标页的标题、摘要、日期、媒体内容和章节结构。第一版将此前研究的资料整理为：
 
-- Workforce overview
-- Soldier roles or documented types
-- The four soldier states, paired with available game icons or clearly labeled interface crops
-- Breeding prerequisites and sequence
-- Workforce allocation and practical management
-- Common failure states and fixes
-- Source notes and related guide links
+- 劳动力系统概览
+- 已有资料能够确认的士兵职责或种类
+- 四项士兵状态，并配合可获得的游戏图标或明确标注的界面截图
+- 繁育的前置条件和流程
+- 劳动力分配与实用管理方法
+- 常见故障及解决办法
+- 来源说明和关联攻略链接
 
-Each language has its own MDX file, so translation can be edited without changing layout code.
+每种语言使用独立的 MDX 文件，因此可以在不修改布局代码的情况下维护翻译。
 
-## Components and Responsibilities
+## 组件及职责
 
-- `SiteHeader`: brand, desktop navigation, language switcher, and mobile menu trigger.
-- `LanguageSwitcher`: preserves the current route while switching between `/en` and `/zh`.
-- `WikiSidebar`: route-aware section navigation and official-game card.
-- `GuideCard`: consistent clickable and planned/non-clickable states.
-- `MediaCard`: image, caption, source label, and optional external source action.
-- `Callout`: warning, information, and research-confidence variants.
-- `MDXComponents`: maps MDX headings, lists, tables, callouts, and media to the shared visual system.
-- `SiteFooter`: fan-site disclosure, official links, and links only to guide or legal pages that actually exist.
+- `SiteHeader`：品牌标识、桌面导航、语言切换器和移动端菜单按钮。
+- `LanguageSwitcher`：在 `/en` 与 `/zh` 之间切换，同时保留当前页面路径。
+- `WikiSidebar`：根据当前路由显示选中状态的栏目导航及官方游戏卡片。
+- `GuideCard`：统一处理可点击和“规划中”两种卡片状态。
+- `MediaCard`：显示图片、图片说明、来源标签和可选的外部来源按钮。
+- `Callout`：提供警告、信息和资料可信度三种提示样式。
+- `MDXComponents`：把 MDX 标题、列表、表格、提示框和媒体内容映射到统一视觉系统。
+- `SiteFooter`：显示粉丝站声明、官方链接，以及仅指向真实存在的攻略或法律页面的链接。
 
-## Content and Data Flow
+## 内容与数据流
 
-1. Locale middleware resolves `en` or `zh`.
-2. A route loads the locale-specific messages and navigation definition.
-3. The guide loader reads the matching MDX frontmatter and body.
-4. The index renders cards from frontmatter; the article renders the MDX body.
-5. Page metadata is generated from the same localized frontmatter.
-6. The language switcher replaces only the locale segment and preserves the page path.
+1. 语言路由逻辑解析 `en` 或 `zh`。
+2. 路由加载对应语言的翻译消息和导航定义。
+3. 攻略加载器读取对应语言的 MDX frontmatter 与正文。
+4. 导航页使用 frontmatter 渲染卡片，文章页渲染 MDX 正文。
+5. 页面 SEO 元数据由同一份本地化 frontmatter 生成。
+6. 语言切换器只替换 URL 中的语言段，并保留当前页面路径。
 
-Missing locale or guide content returns Next.js `notFound()` rather than silently displaying the wrong language.
+当某个语言或攻略内容不存在时，页面调用 Next.js 的 `notFound()`，不会静默显示错误语言的内容。
 
-## Assets
+## 图片与图标资源
 
-Use the favicon set already stored in `output/imagegen/favicon_io` and copy the required files into `public` during implementation. Pax Autocratica screenshots or official promotional imagery may be used only with source attribution. No assets will be downloaded from the reference site.
+使用已经保存在 `output/imagegen/favicon_io` 中的 favicon 套件，并在实施阶段把所需文件复制到 `public`。Pax Autocratica 游戏截图或官方宣传图仅在标注来源的前提下使用。网站不会下载目标站的任何资源。
 
-If a suitable in-game screenshot for a requested visual is unavailable, the layout shows a styled, clearly captioned media panel; it will not invent a game mechanic or misleading screenshot.
+如果无法获得所需的合适游戏截图，页面显示带有清晰说明的样式化媒体面板，不编造游戏机制，也不使用会造成误解的截图。
 
-## Responsive and Accessibility Behavior
+## 响应式与无障碍行为
 
-- Desktop: centered main column with sticky right rail.
-- Tablet: narrower reading column and compact rail.
-- Mobile: single-column content, horizontally safe cards, wrapped CTAs, and rail content moved into an accessible disclosure menu.
-- All interactive controls have visible focus states and minimum 44-pixel hit areas.
-- Icons are from one consistent icon library, not emoji.
-- Text and borders maintain usable contrast on the near-black background.
-- Reduced-motion preferences disable nonessential transitions.
+- 桌面端：居中的主要内容栏和吸附式右侧栏。
+- 平板端：缩窄阅读栏，并使用更紧凑的右侧栏。
+- 移动端：单栏内容、不会越过屏幕的卡片、自动换行的行动按钮，并把右侧 Wiki 导航移入无障碍展开菜单。
+- 所有可交互控件都具有清晰的焦点状态和至少 44 像素的点击区域。
+- 图标统一使用同一图标库，不使用 emoji 充当界面图标。
+- 文字和边框在近黑色背景上保持足够对比度。
+- 当用户启用“减少动态效果”时，关闭非必要的过渡动画。
 
-## Testing and Acceptance Criteria
+## 测试与验收标准
 
-- All six localized URLs render without runtime errors.
-- `/` selects a supported locale and defaults to `/en`.
-- Switching language preserves `/guides` and `/guides/soldiers-and-breeding`.
-- Both MDX documents compile and render headings, lists, callouts, tables, media, and links.
-- The guide index card opens the correct localized article.
-- Navigation highlights the active section and is keyboard accessible.
-- Desktop layout visually follows the reference site's header/content/right-rail proportions.
-- Mobile layout has no horizontal overflow and exposes the wiki navigation through a menu.
-- Each route has localized title, description, canonical URL, and alternate-language metadata.
-- Favicon files resolve correctly.
-- `next build` succeeds with no TypeScript or MDX compilation errors.
+- 六个本地化 URL 均可正常渲染，不出现运行时错误。
+- `/` 能够选择受支持语言，并默认进入 `/en`。
+- 切换语言时保留 `/guides` 或 `/guides/soldiers-and-breeding` 页面路径。
+- 两份 MDX 文档均可正常编译，并能渲染标题、列表、提示框、表格、媒体内容和链接。
+- 攻略导航页中的卡片能够进入正确语言版本的文章页。
+- 导航栏正确高亮当前栏目，并可使用键盘操作。
+- 桌面布局在顶部导航、内容区和右侧栏的比例上贴近目标站。
+- 移动布局不存在横向溢出，并能通过菜单打开 Wiki 导航。
+- 每个路由都包含本地化标题、描述、规范链接和多语言替代链接元数据。
+- favicon 文件能够正常访问。
+- `next build` 成功完成，不出现 TypeScript 或 MDX 编译错误。
 
-## Out of Scope
+## 不在本次范围内
 
-- Real-time Steam player statistics
-- User accounts, comments, ratings, or persistent data
-- Additional completed guide articles beyond Soldiers & Breeding
-- Copying the reference site's proprietary content, source code, or imagery
-- Deployment, unless separately requested
+- Steam 实时玩家统计
+- 用户账号、评论、评分或持久化数据
+- 除“士兵与繁育”之外的其他完整攻略文章
+- 复制目标站的专有内容、源代码或图片
+- 部署上线；如有需要可另行提出
