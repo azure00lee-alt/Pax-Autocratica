@@ -28,12 +28,15 @@ describe('shared wiki shell', () => {
 
   it('exposes the mobile wiki navigation disclosure', () => {
     render(<WikiSidebar locale="en" pathname="/en" />);
-    expect(screen.getByText('Browse the wiki', {selector: 'summary'})).toBeInTheDocument();
+    const summary = screen.getByText('Browse the wiki', {selector: 'summary'});
+    expect(summary).toBeInTheDocument();
+    expect(summary.closest('details')).not.toHaveAttribute('open');
   });
 
   it('keeps planned guide cards non-interactive', () => {
     render(<GuideCard title="Economy" description="Resource planning" status="planned" />);
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
+    expect(screen.getByRole('article')).not.toHaveAttribute('aria-disabled');
     expect(screen.getByText('Planned')).toBeInTheDocument();
   });
 

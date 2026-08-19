@@ -1,0 +1,8 @@
+allowBuilds:
+  '@parcel/watcher': true
+  '@swc/core': true
+minimumReleaseAgeExclude:
+  - lucide-react@1.33.0
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - '@swc/core'

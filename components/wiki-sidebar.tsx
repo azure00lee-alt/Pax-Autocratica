@@ -21,7 +21,7 @@ function WikiNavigation({locale, pathname}: {locale: Locale; pathname: string}) 
 
 export function WikiSidebar({locale, pathname}: {locale: Locale; pathname: string}) {
   return <aside className="wiki-sidebar">
-    <details className="wiki-sidebar__desktop sidebar-card" open>
+    <details className="wiki-sidebar__desktop sidebar-card">
       <summary className="wiki-sidebar__mobile">{locale === 'en' ? 'Browse the wiki' : '浏览 Wiki'}</summary>
       <p className="sidebar-eyebrow">{locale === 'en' ? 'Knowledge base' : '知识库'}</p>
       <WikiNavigation locale={locale} pathname={pathname} />

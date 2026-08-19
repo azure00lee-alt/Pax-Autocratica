@@ -20,5 +20,5 @@ export function GuideCard({
   const body = <><h3>{title}</h3><p>{description}</p><span>{status === 'planned' ? statusLabel : actionLabel}</span></>;
   return status === 'ready' && href
     ? <Link className="guide-card" href={href}>{body}</Link>
-    : <article className="guide-card guide-card--planned" aria-disabled="true">{body}</article>;
+    : <article className="guide-card guide-card--planned">{body}</article>;
 }
