@@ -1,5 +1,6 @@
 import {describe, expect, it} from 'vitest';
 import {getGuide, listGuides} from '@/lib/content';
+import {guideSlugs} from '@/lib/guides';
 
 describe('guide content', () => {
   it.each(['en', 'zh'] as const)('loads the %s Soldiers & Breeding guide', (locale) => {
@@ -11,9 +12,9 @@ describe('guide content', () => {
     expect(guide?.source).toContain('##');
   });
 
-  it.each(['en', 'zh'] as const)('lists exactly one completed %s guide', (locale) => {
-    expect(listGuides(locale)).toHaveLength(1);
-    expect(listGuides(locale).map((guide) => guide.slug)).toEqual(['soldiers-and-breeding']);
+  it.each(['en', 'zh'] as const)('lists all completed %s guides in editorial order', (locale) => {
+    expect(listGuides(locale)).toHaveLength(5);
+    expect(listGuides(locale).map((guide) => guide.slug)).toEqual(guideSlugs);
   });
 
   it('returns null for an unknown guide', () => {
@@ -52,6 +53,22 @@ describe('guide content', () => {
     });
 
     expect(structure(zh)).toEqual(structure(en));
+  });
+
+  it.each(guideSlugs.flatMap((slug) => [
+    ['en', slug],
+    ['zh', slug]
+  ] as const))('%s/%s is a complete sourced guide', (locale, slug) => {
+    const guide = getGuide(locale, slug);
+    expect(guide, `${locale}/${slug} should exist`).not.toBeNull();
+    const source = guide!.source;
+    expect(guide!.frontmatter.order).toBe(guideSlugs.indexOf(slug) + 1);
+    expect(source.match(/^##\s+.+$/gm)?.length).toBeGreaterThanOrEqual(7);
+    expect(source.match(/^###\s+.+$/gm)?.length).toBeGreaterThanOrEqual(7);
+    expect(source).toContain('|');
+    expect(source.match(/<Callout/g)?.length).toBeGreaterThanOrEqual(2);
+    expect(source).toContain(`/${locale}/guides`);
+    expect(source.match(/https:\/\//g)?.length).toBeGreaterThanOrEqual(3);
   });
 
   it('uses only the approved official external sources', () => {
