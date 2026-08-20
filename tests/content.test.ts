@@ -5,6 +5,7 @@ describe('guide content', () => {
   it.each(['en', 'zh'] as const)('loads the %s Soldiers & Breeding guide', (locale) => {
     const guide = getGuide(locale, 'soldiers-and-breeding');
     expect(guide?.frontmatter.slug).toBe('soldiers-and-breeding');
+    expect(guide?.frontmatter.order).toBe(1);
     expect(guide?.frontmatter.updated).toMatch(/^2026-08-/);
     expect(guide?.frontmatter.image).toBe('/media/pax-soldiers.jpg');
     expect(guide?.source).toContain('##');
@@ -12,6 +13,7 @@ describe('guide content', () => {
 
   it.each(['en', 'zh'] as const)('lists exactly one completed %s guide', (locale) => {
     expect(listGuides(locale)).toHaveLength(1);
+    expect(listGuides(locale).map((guide) => guide.slug)).toEqual(['soldiers-and-breeding']);
   });
 
   it('returns null for an unknown guide', () => {

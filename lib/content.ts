@@ -5,6 +5,7 @@ import type {Locale} from '@/lib/locale';
 
 export type GuideFrontmatter = {
   slug: string;
+  order: number;
   title: string;
   cardTitle: string;
   description: string;
@@ -33,5 +34,5 @@ export function listGuides(locale: Locale): GuideFrontmatter[] {
   const dir = path.join(contentRoot, locale, 'guides');
   return fs.readdirSync(dir).filter((name) => name.endsWith('.mdx'))
     .map((name) => getGuide(locale, name.slice(0, -4))!.frontmatter)
-    .sort((a, b) => b.updated.localeCompare(a.updated));
+    .sort((a, b) => a.order - b.order);
 }
