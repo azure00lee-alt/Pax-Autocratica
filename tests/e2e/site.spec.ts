@@ -28,6 +28,25 @@ test('localized pages expose the installable web app manifest', async ({page}) =
   await expect(page.locator('link[rel="manifest"]')).toHaveAttribute('href', '/site.webmanifest');
 });
 
+test('home hero uses a subdued official colony image behind its content', async ({page}) => {
+  await page.goto('/en');
+  const hero = page.locator('.home-hero');
+  const visual = await hero.evaluate((element) => {
+    const background = getComputedStyle(element, '::before');
+    const title = element.querySelector('h1')!;
+    return {
+      image: background.backgroundImage,
+      opacity: Number.parseFloat(background.opacity),
+      titleLayer: Number.parseInt(getComputedStyle(title).zIndex, 10)
+    };
+  });
+
+  expect(visual.image).toContain('/media/pax-colony.jpg');
+  expect(visual.opacity).toBeGreaterThanOrEqual(0.25);
+  expect(visual.opacity).toBeLessThanOrEqual(0.35);
+  expect(visual.titleLayer).toBeGreaterThan(0);
+});
+
 for (const locale of locales) {
   test(`${locale} serves the home, index, and all five guide pages`, async ({page}) => {
     const expectNoRuntimeErrors = monitorRuntimeErrors(page);
