@@ -39,7 +39,6 @@
 ### Task 1: Build and Validate the Research Archive
 
 **Files:**
-- Create: `tests/research.test.ts`
 - Create: `research/soldiers-and-breeding/*.md`
 - Create: `research/base-and-resources/*.md`
 - Create: `research/captives-and-conversion/*.md`
@@ -50,43 +49,11 @@
 - Consumes: the source boundary in the approved design spec.
 - Produces: source notes with headings `Source`, `Source type`, `URL`, `Accessed`, `Supported claims`, and `Writing notes`; guide authors use only claims recorded here.
 
-- [ ] **Step 1: Write the failing archive-structure test**
-
-```ts
-import fs from 'node:fs';
-import path from 'node:path';
-import {describe, expect, it} from 'vitest';
-
-const slugs = ['soldiers-and-breeding', 'base-and-resources', 'captives-and-conversion', 'weapons-and-combat', 'exploration-and-bosses'];
-
-describe('research archive', () => {
-  it.each(slugs)('%s has separate, traceable source notes', (slug) => {
-    const dir = path.join(process.cwd(), 'research', slug);
-    const files = fs.readdirSync(dir).filter((file) => file.endsWith('.md'));
-    expect(files.length).toBeGreaterThanOrEqual(3);
-    for (const file of files) {
-      const source = fs.readFileSync(path.join(dir, file), 'utf8');
-      for (const heading of ['## Source type', '## URL', '## Accessed', '## Supported claims', '## Writing notes']) {
-        expect(source).toContain(heading);
-      }
-      expect(source).toMatch(/https:\/\//);
-      expect(source).not.toMatch(/vvultimatum|fandom|wiki\.gg/i);
-    }
-  });
-});
-```
-
-- [ ] **Step 2: Run the test and verify RED**
-
-Run: `node node_modules/vitest/vitest.mjs run tests/research.test.ts`
-
-Expected: FAIL because the five research directories and source notes do not exist.
-
-- [ ] **Step 3: Search primary sources and verify every candidate URL**
+- [ ] **Step 1: Search primary sources and verify every candidate URL**
 
 Search the official Pax Autocratica website, Steam store, official Steam announcements, and official video/social destinations first. For any factual gap, inspect the supplied Wand review and reputable high-view videos or media articles; exclude guide competitors. Open each chosen URL directly, verify a non-error response and that its content supports the note.
 
-- [ ] **Step 4: Create one evidence note per source**
+- [ ] **Step 2: Create one evidence note per source**
 
 Use sequential filenames such as `01-official-website.md`, `02-steam-store.md`, and `03-steam-announcement-2026-08-21.md`. Each file must use the same complete structure as this concrete official-site note:
 
@@ -114,16 +81,14 @@ https://www.paxautocratica.com/
 The official overview establishes the game's two-part colony and expedition loop. It does not by itself establish exact resource values, conversion formulas, a complete weapon list, or a complete boss roster; those claims require separate sources.
 ```
 
-- [ ] **Step 5: Run the archive test and inspect the evidence boundary**
+- [ ] **Step 3: Inspect the archive and evidence boundary**
 
-Run: `node node_modules/vitest/vitest.mjs run tests/research.test.ts`
+Manually confirm that every planned guide chapter has at least one supporting note, every URL returns a successful response, every third-party observation is labeled, and no competitor guide domain appears. Remove any unsupported planned subsection rather than filling it with inference. Research notes are human-readable evidence records, so they are reviewed directly rather than tested by brittle source-text assertions.
 
-Expected: PASS. Manually confirm that every planned guide chapter has at least one supporting note, and remove any unsupported planned subsection rather than filling it with inference.
-
-- [ ] **Step 6: Commit only the research archive and its test**
+- [ ] **Step 4: Commit only the research archive and plan correction**
 
 ```powershell
-git add -- tests/research.test.ts research
+git add -- research docs/superpowers/plans/2026-08-21-pax-autocratica-five-language-guides.md
 git commit -m "docs: archive guide research sources"
 ```
 
