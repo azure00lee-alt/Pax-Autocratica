@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {ExternalLink} from 'lucide-react';
 import {LanguageSwitcher} from '@/components/language-switcher';
-import {officialSteamUrl, wikiSections} from '@/lib/navigation';
+import {officialSteamUrl, shellCopy, wikiSections} from '@/lib/navigation';
 import type {Locale} from '@/lib/locale';
 
 export function SiteHeader({locale, pathname, brand}: {
@@ -10,7 +10,8 @@ export function SiteHeader({locale, pathname, brand}: {
   pathname: string;
   brand: string;
 }) {
-  const links = wikiSections[locale].slice(0, 3);
+  const links = wikiSections[locale].slice(0, 2);
+  const copy = shellCopy[locale];
 
   return <header className="site-header">
     <div className="header-inner">
@@ -18,14 +19,14 @@ export function SiteHeader({locale, pathname, brand}: {
         <Image src="/android-chrome-192x192.png" alt="" width={40} height={40} priority />
         <span>{brand}</span>
       </Link>
-      <nav className="header-nav" aria-label={locale === 'en' ? 'Primary navigation' : '主导航'}>
-        {links.map((item) => 'href' in item && <Link
+      <nav className="header-nav" aria-label={copy.primaryNav}>
+        {links.map((item) => <Link
           key={item.href}
           href={item.href}
           aria-current={pathname === item.href ? 'page' : undefined}
         >{item.label}</Link>)}
         <a href={officialSteamUrl} target="_blank" rel="noreferrer">
-          {locale === 'en' ? 'Official Steam' : 'Steam 官方页面'}
+          {copy.officialSteam}
           <ExternalLink aria-hidden="true" size={16} strokeWidth={1.75} />
         </a>
       </nav>

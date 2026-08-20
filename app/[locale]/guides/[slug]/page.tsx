@@ -9,19 +9,23 @@ import {mdxComponents} from '@/components/mdx-components';
 import {MediaCard} from '@/components/media-card';
 import {routing} from '@/i18n/routing';
 import {getGuide} from '@/lib/content';
+import {guideSlugs, localizedAlternates} from '@/lib/guides';
+import type {Locale} from '@/lib/locale';
 
-const slug = 'soldiers-and-breeding';
 const officialScreenshot = 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1067360/6cd6758be1fe8edaf3775b2261fc6d6eb29782b3/ss_6cd6758be1fe8edaf3775b2261fc6d6eb29782b3.1920x1080.jpg';
 
 const copy = {
   en: {breadcrumbLabel: 'Breadcrumb', home: 'Home', guides: 'Guides', updated: 'Updated'},
-  zh: {breadcrumbLabel: '面包屑导航', home: '首页', guides: '攻略导航', updated: '更新日期'}
-} as const;
+  zh: {breadcrumbLabel: '面包屑导航', home: '首页', guides: '攻略导航', updated: '更新日期'},
+  fr: {breadcrumbLabel: 'Fil d’Ariane', home: 'Accueil', guides: 'Guides', updated: 'Mis à jour'},
+  ru: {breadcrumbLabel: 'Навигационная цепочка', home: 'Главная', guides: 'Руководства', updated: 'Обновлено'},
+  de: {breadcrumbLabel: 'Brotkrümelnavigation', home: 'Startseite', guides: 'Guides', updated: 'Aktualisiert'}
+} satisfies Record<Locale, Record<string, string>>;
 
 type PageProps = {params: Promise<{locale: string; slug: string}>};
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({locale, slug}));
+  return routing.locales.flatMap((locale) => guideSlugs.map((slug) => ({locale, slug})));
 }
 
 export async function generateMetadata({params}: PageProps): Promise<Metadata> {
@@ -36,10 +40,7 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
     description: guide.frontmatter.description,
     alternates: {
       canonical,
-      languages: {
-        en: `/en/guides/${guideSlug}`,
-        zh: `/zh/guides/${guideSlug}`
-      }
+      languages: localizedAlternates(`/guides/${guideSlug}`)
     },
     openGraph: {
       title: guide.frontmatter.title,

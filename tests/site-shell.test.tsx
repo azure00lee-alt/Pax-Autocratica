@@ -26,6 +26,17 @@ describe('shared wiki shell', () => {
     const navigation = screen.getByRole('navigation', {name: /wiki navigation/i});
     expect(navigation).toBeInTheDocument();
     expect(navigation.querySelector('a[href="/en/guides"]')).toHaveAttribute('aria-current', 'page');
+    expect(navigation.querySelectorAll('a')).toHaveLength(7);
+    for (const slug of [
+      'soldiers-and-breeding',
+      'base-and-resources',
+      'captives-and-conversion',
+      'weapons-and-combat',
+      'exploration-and-bosses'
+    ]) {
+      expect(navigation.querySelector(`a[href="/en/guides/${slug}"]`)).toBeInTheDocument();
+    }
+    expect(navigation.querySelector('.wiki-nav__planned')).not.toBeInTheDocument();
   });
 
   it('exposes the mobile wiki navigation disclosure', () => {
@@ -79,6 +90,10 @@ describe('shared wiki shell', () => {
     expect(screen.getByRole('link', {name: '首页'})).toHaveAttribute('href', '/zh');
     expect(screen.getByRole('link', {name: '攻略导航'})).toHaveAttribute('href', '/zh/guides');
     expect(screen.getByRole('link', {name: '士兵与繁育'})).toHaveAttribute('href', '/zh/guides/soldiers-and-breeding');
+    expect(screen.getByRole('link', {name: '基地与资源'})).toHaveAttribute('href', '/zh/guides/base-and-resources');
+    expect(screen.getByRole('link', {name: '俘虏与转化'})).toHaveAttribute('href', '/zh/guides/captives-and-conversion');
+    expect(screen.getByRole('link', {name: '兵器与战斗'})).toHaveAttribute('href', '/zh/guides/weapons-and-combat');
+    expect(screen.getByRole('link', {name: '探索与 BOSS'})).toHaveAttribute('href', '/zh/guides/exploration-and-bosses');
     expect(screen.getByRole('link', {name: '官方网站'})).toHaveAttribute('href', 'https://www.paxautocratica.com/');
     expect(screen.getByRole('link', {name: 'Steam 官方页面'}).getAttribute('href')).toMatch(/store\.steampowered\.com/);
   });

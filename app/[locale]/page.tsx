@@ -6,6 +6,8 @@ import {notFound} from 'next/navigation';
 import {GuideCard} from '@/components/guide-card';
 import {MediaCard} from '@/components/media-card';
 import {routing} from '@/i18n/routing';
+import {listGuides} from '@/lib/content';
+import {localizedAlternates} from '@/lib/guides';
 import {officialSteamUrl} from '@/lib/navigation';
 
 const officialSiteUrl = 'https://www.paxautocratica.com/';
@@ -24,7 +26,7 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
     description: t('hero.description'),
     alternates: {
       canonical,
-      languages: {en: '/en', zh: '/zh'}
+      languages: localizedAlternates()
     },
     openGraph: {
       title: 'Pax Autocratica',
@@ -42,7 +44,7 @@ export default async function HomePage({params}: PageProps) {
 
   const t = await getTranslations('Home');
   const stats = t.raw('hero.stats') as string[];
-  const plannedGuides = ['states', 'economy', 'troubleshooting'] as const;
+  const guides = listGuides(locale);
 
   return <>
     <section className="home-hero">
@@ -74,20 +76,12 @@ export default async function HomePage({params}: PageProps) {
 
     <section className="popular-guides" aria-labelledby="popular-guides-title">
       <h2 id="popular-guides-title" className="section-title">{t('popular.title')}</h2>
-      <GuideCard
-        title={t('popular.soldiers.title')}
-        description={t('popular.soldiers.description')}
-        href={`/${locale}/guides/soldiers-and-breeding`}
+      {guides.map((guide) => <GuideCard
+        key={guide.slug}
+        title={guide.cardTitle}
+        description={guide.cardDescription}
+        href={`/${locale}/guides/${guide.slug}`}
         status="ready"
-        statusLabel={t('popular.plannedLabel')}
-        actionLabel={t('popular.actionLabel')}
-      />
-      {plannedGuides.map((guide) => <GuideCard
-        key={guide}
-        title={t(`popular.${guide}.title`)}
-        description={t(`popular.${guide}.description`)}
-        status="planned"
-        statusLabel={t('popular.plannedLabel')}
         actionLabel={t('popular.actionLabel')}
       />)}
     </section>
