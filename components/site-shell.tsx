@@ -12,7 +12,7 @@ export function SiteShell({locale, children}: {locale: Locale; children: React.R
   const t = useTranslations();
 
   return <div className="site-shell">
-    <a className="skip-link" href="#main-content">{locale === 'en' ? 'Skip to content' : '跳到主要内容'}</a>
+    <a className="skip-link" href="#main-content">{t('skipLink')}</a>
     <SiteHeader locale={locale} pathname={pathname} brand={t('brand')} />
     <div className="site-grid">
       <WikiSidebar locale={locale} pathname={pathname} />

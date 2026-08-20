@@ -1,0 +1,80 @@
+{
+  "brand": "Pax Autocratica Wiki",
+  "skipLink": "Zum Hauptinhalt springen",
+  "nav": {
+    "home": "Startseite",
+    "guides": "Guides",
+    "states": "Zustände und Richtlinien",
+    "economy": "Wirtschaft und Produktion",
+    "troubleshooting": "Problemlösungen"
+  },
+  "language": {
+    "english": "Englisch",
+    "chinese": "Chinesisch"
+  },
+  "labels": {
+    "officialMedia": "Offizielle Medien",
+    "planned": "Geplant"
+  },
+  "footer": {
+    "disclosure": "Pax Autocratica Wiki ist eine unabhängige Fan-Ressource und nicht mit Multiverse verbunden."
+  },
+  "Home": {
+    "hero": {
+      "eyebrow": "Unabhängiges Guide-Zentrum",
+      "description": "Baue eine Kolonie auf, verwalte ihre Bewohner und verteidige sie in einem Spiel, in dem jede Expedition zu einem FPS-Roguelite-Einsatz wird.",
+      "stats": ["Multiverse", "Steam / Windows", "Koloniesimulation + FPS-Roguelite", "Einzelspieler"],
+      "primaryCta": "Soldaten und Fortpflanzung",
+      "secondaryCta": "Alle Guides",
+      "tertiaryCta": "Auf Steam ansehen"
+    },
+    "start": {
+      "regionLabel": "Erkundung beginnen",
+      "title": "Hier anfangen",
+      "description": "Lerne vor der nächsten Expedition, wie Soldaten, Fortpflanzung, Arbeitszuweisungen und Koloniezustände zusammenspielen."
+    },
+    "updates": {
+      "title": "Wiki-Fortschritt",
+      "description": "Der Guide zu Soldaten und Fortpflanzung ist fertig. Zustände, Richtlinien, Produktion und Problemlösungen sind noch als geplant markiert."
+    },
+    "popular": {
+      "title": "Beliebte Guides",
+      "actionLabel": "Guide lesen",
+      "plannedLabel": "Geplant",
+      "soldiers": {
+        "title": "Soldaten und Fortpflanzung",
+        "description": "Verstehe Soldatenrollen, Koloniezustände, Fortpflanzung, Arbeitsverteilung und häufige Hindernisse."
+      },
+      "states": {
+        "title": "Zustände und Richtlinien",
+        "description": "Geplantes Nachschlagewerk zu Angst, Glück, Hunger, Loyalität und Kolonierichtlinien."
+      },
+      "economy": {
+        "title": "Wirtschaft und Produktion",
+        "description": "Geplanter Guide zu Produktionsketten, Ressourcen und Prioritäten der Arbeitskräfte."
+      },
+      "troubleshooting": {
+        "title": "Problemlösungen",
+        "description": "Geplante Lösungen für häufige Probleme in Kolonie und Expeditionen."
+      }
+    },
+    "about": {
+      "eyebrow": "Offizieller Spielüberblick",
+      "title": "Über Pax Autocratica",
+      "description": "Pax Autocratica von Multiverse ist ein Einzelspielertitel für Steam und Windows, der Koloniesimulation und FPS-Roguelite verbindet. Kolonieentscheidungen drehen sich um Angst, Glück, Hunger und Loyalität.",
+      "officialAction": "Offizielle Website besuchen",
+      "mediaAlt": "Offizielles Pax-Autocratica-Artwork",
+      "mediaLabel": "Offizielle Steam-Medien"
+    },
+    "faq": {
+      "title": "Häufige Fragen",
+      "question": "Was für ein Spiel ist Pax Autocratica?",
+      "answer": "Das Spiel verbindet Kolonieverwaltung mit Ego-Roguelite-Expeditionen. In der Basis verwaltest du Bewohner und Produktion; bei Einsätzen kämpfst du selbst."
+    },
+    "finalCta": {
+      "eyebrow": "Mit Plan aufbauen",
+      "title": "Bereit, die Kolonie zu übernehmen?",
+      "action": "Alle Guides ansehen"
+    }
+  }
+}

@@ -1,19 +1,41 @@
 'use client';
 
-import Link from 'next/link';
-import {usePathname} from 'next/navigation';
-import {switchLocalePath, type Locale} from '@/lib/locale';
+import {usePathname, useRouter} from 'next/navigation';
+import {isLocale, locales, switchLocalePath, type Locale} from '@/lib/locale';
+
+const languageNames: Record<Locale, string> = {
+  en: 'English',
+  zh: '中文',
+  fr: 'Français',
+  ru: 'Русский',
+  de: 'Deutsch'
+};
+
+const selectorLabels: Record<Locale, string> = {
+  en: 'Language selector',
+  zh: '语言选择',
+  fr: 'Sélection de la langue',
+  ru: 'Выбор языка',
+  de: 'Sprachauswahl'
+};
 
 export function LanguageSwitcher({locale}: {locale: Locale}) {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
-    <div className="language-switcher" role="group" aria-label={locale === 'en' ? 'Language selector' : '语言选择'}>
-      {(['en', 'zh'] as const).map((item) => (
-        <Link key={item} href={switchLocalePath(pathname, item)} aria-current={item === locale ? 'page' : undefined}>
-          {item === 'en' ? 'EN' : '中文'}
-        </Link>
-      ))}
+    <div className="language-switcher">
+      <select
+        aria-label={selectorLabels[locale]}
+        value={locale}
+        onChange={(event) => {
+          if (isLocale(event.target.value)) {
+            router.replace(switchLocalePath(pathname, event.target.value));
+          }
+        }}
+      >
+        {locales.map((item) => <option key={item} value={item}>{languageNames[item]}</option>)}
+      </select>
     </div>
   );
 }
