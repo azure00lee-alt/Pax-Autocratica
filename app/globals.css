@@ -131,6 +131,7 @@ a.guide-card:hover {border-color: color-mix(in srgb, var(--accent) 70%, var(--bo
 .mdx-body table {width: 100%; border-collapse: collapse;}
 .mdx-body th, .mdx-body td {padding: 10px 12px; border: 1px solid var(--border); text-align: left; vertical-align: top;}
 .mdx-body th {background: var(--surface-soft);}
+.mdx-body th:first-child, .mdx-body td:first-child {min-width: 84px;}
 .site-footer {width: min(1232px, calc(100% - 40px)); margin: 0 auto; padding: 24px 0 40px; border-top: 1px solid var(--border); color: var(--muted); font-size: .8125rem;}
 .site-footer p {margin: 0; max-width: 75ch;}
 .footer-links {display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 12px;}

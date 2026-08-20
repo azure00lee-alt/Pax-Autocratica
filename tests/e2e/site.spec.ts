@@ -51,6 +51,7 @@ for (const locale of ['en', 'zh'] as const) {
     const expectNoRuntimeErrors = monitorRuntimeErrors(page);
     await page.goto(`/${locale}/guides`);
     await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('main .media-card img')).toHaveAttribute('loading', 'eager');
     await expect(page.locator('main').getByRole('link', {name: new RegExp(labels.articleTitle, 'i')})).toHaveAttribute('href', `/${locale}/guides/soldiers-and-breeding`);
     await expectNoForbiddenReference(page);
     expectNoRuntimeErrors();
@@ -61,6 +62,10 @@ for (const locale of ['en', 'zh'] as const) {
     await page.goto(`/${locale}/guides/soldiers-and-breeding`);
     await expect(page.getByRole('heading', {level: 1, name: labels.articleTitle})).toBeVisible();
     await expect(page.locator('article h2')).toHaveCount(7);
+    await expect(page.locator('article table')).toHaveCount(1);
+    await expect(page.locator('article table tbody tr')).toHaveCount(4);
+    expect(await page.locator('article table th').first().evaluate((cell) => cell.getBoundingClientRect().width)).toBeGreaterThanOrEqual(80);
+    await expect(page.locator('article .media-card img')).toHaveAttribute('loading', 'eager');
     await expect(page.locator('html')).toHaveAttribute('lang', locale);
     await expectNoForbiddenReference(page);
     expectNoRuntimeErrors();

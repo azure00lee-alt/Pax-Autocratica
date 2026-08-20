@@ -1,14 +1,15 @@
 import Image from 'next/image';
 
-export function MediaCard({image, alt, label, title, description}: {
+export function MediaCard({image, alt, label, title, description, eager = false}: {
   image: string;
   alt: string;
   label: string;
   title?: string;
   description?: string;
+  eager?: boolean;
 }) {
   return <figure className="media-card">
-    <Image src={image} alt={alt} width={1920} height={1080} sizes="(max-width: 1040px) 100vw, 936px" />
+    <Image src={image} alt={alt} width={1920} height={1080} sizes="(max-width: 1040px) 100vw, 936px" loading={eager ? 'eager' : 'lazy'} />
     <figcaption><span>{label}</span>{title && <strong>{title}</strong>}{description && <p>{description}</p>}</figcaption>
   </figure>;
 }

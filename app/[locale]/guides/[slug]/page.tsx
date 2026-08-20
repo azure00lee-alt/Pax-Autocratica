@@ -4,6 +4,7 @@ import {setRequestLocale} from 'next-intl/server';
 import {notFound} from 'next/navigation';
 import {MDXRemote} from 'next-mdx-remote/rsc';
 import {Breadcrumb} from '@/components/breadcrumb';
+import remarkGfm from 'remark-gfm';
 import {mdxComponents} from '@/components/mdx-components';
 import {MediaCard} from '@/components/media-card';
 import {routing} from '@/i18n/routing';
@@ -75,7 +76,13 @@ export default async function GuidePage({params}: PageProps) {
       <p>{guide.frontmatter.description}</p>
       <time dateTime={guide.frontmatter.updated}>{pageCopy.updated}: {guide.frontmatter.updated}</time>
     </header>
-    <MediaCard image={guide.frontmatter.image} alt={guide.frontmatter.imageAlt} label={guide.frontmatter.sourceLabel} />
-    <div className="mdx-body"><MDXRemote source={guide.source} components={mdxComponents} /></div>
+    <MediaCard image={guide.frontmatter.image} alt={guide.frontmatter.imageAlt} label={guide.frontmatter.sourceLabel} eager />
+    <div className="mdx-body">
+      <MDXRemote
+        source={guide.source}
+        components={mdxComponents}
+        options={{mdxOptions: {remarkPlugins: [remarkGfm]}}}
+      />
+    </div>
   </article>;
 }

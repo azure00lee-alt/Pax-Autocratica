@@ -98,7 +98,7 @@ export default async function GuidesPage({params}: PageProps) {
       {label: pageCopy.home, href: `/${locale}`},
       {label: pageCopy.guides}
     ]} />
-    <MediaCard image="/media/pax-colony.jpg" alt={pageCopy.mediaAlt} label={pageCopy.officialMedia} />
+    <MediaCard image="/media/pax-colony.jpg" alt={pageCopy.mediaAlt} label={pageCopy.officialMedia} eager />
     <header className="page-intro">
       <h1>{pageCopy.title}</h1>
       <p>{pageCopy.description}</p>
