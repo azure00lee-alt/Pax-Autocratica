@@ -3,7 +3,7 @@ import {isLocale, locales, switchLocalePath} from '@/lib/locale';
 
 describe('locale helpers', () => {
   it('accepts only supported locales', () => {
-    expect(locales).toEqual(['en', 'zh', 'fr', 'ru', 'de']);
+    expect(locales).toEqual(['en', 'de', 'fr', 'ru', 'zh']);
     for (const locale of locales) expect(isLocale(locale)).toBe(true);
     expect(isLocale('es')).toBe(false);
     expect(isLocale('ja')).toBe(false);

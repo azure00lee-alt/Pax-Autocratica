@@ -20,10 +20,10 @@ describe('language switcher', () => {
     expect(selector).toHaveValue('zh');
     expect(screen.getAllByRole('option').map((option) => option.textContent)).toEqual([
       'English',
-      '中文',
+      'Deutsch',
       'Français',
       'Русский',
-      'Deutsch'
+      '中文'
     ]);
 
     fireEvent.change(selector, {target: {value: 'de'}});
