@@ -1,6 +1,7 @@
 import {describe, expect, it} from 'vitest';
 import {getGuide, listGuides} from '@/lib/content';
 import {guideSlugs} from '@/lib/guides';
+import {locales} from '@/lib/locale';
 
 describe('guide content', () => {
   it.each(['en', 'zh'] as const)('loads the %s Soldiers & Breeding guide', (locale) => {
@@ -12,7 +13,7 @@ describe('guide content', () => {
     expect(guide?.source).toContain('##');
   });
 
-  it.each(['en', 'zh'] as const)('lists all completed %s guides in editorial order', (locale) => {
+  it.each(locales)('lists all completed %s guides in editorial order', (locale) => {
     expect(listGuides(locale)).toHaveLength(5);
     expect(listGuides(locale).map((guide) => guide.slug)).toEqual(guideSlugs);
   });
@@ -55,24 +56,23 @@ describe('guide content', () => {
     expect(structure(zh)).toEqual(structure(en));
   });
 
-  it.each(guideSlugs.flatMap((slug) => [
-    ['en', slug],
-    ['zh', slug]
-  ] as const))('%s/%s is a complete sourced guide', (locale, slug) => {
-    const guide = getGuide(locale, slug);
-    expect(guide, `${locale}/${slug} should exist`).not.toBeNull();
-    const source = guide!.source;
-    expect(guide!.frontmatter.order).toBe(guideSlugs.indexOf(slug) + 1);
-    expect(source.match(/^##\s+.+$/gm)?.length).toBeGreaterThanOrEqual(7);
-    expect(source.match(/^###\s+.+$/gm)?.length).toBeGreaterThanOrEqual(7);
-    expect(source).toContain('|');
-    expect(source.match(/<Callout/g)?.length).toBeGreaterThanOrEqual(2);
-    expect(source).toContain(`/${locale}/guides`);
-    expect(source.match(/https:\/\//g)?.length).toBeGreaterThanOrEqual(3);
-  });
+  it.each(guideSlugs.flatMap((slug) => locales.map((locale) => [locale, slug] as const)))(
+    '%s/%s is a complete sourced guide', (locale, slug) => {
+      const guide = getGuide(locale, slug);
+      expect(guide, `${locale}/${slug} should exist`).not.toBeNull();
+      const source = guide!.source;
+      expect(guide!.frontmatter.order).toBe(guideSlugs.indexOf(slug) + 1);
+      expect(source.match(/^##\s+.+$/gm)?.length).toBeGreaterThanOrEqual(7);
+      expect(source.match(/^###\s+.+$/gm)?.length).toBeGreaterThanOrEqual(7);
+      expect(source).toContain('|');
+      expect(source.match(/<Callout/g)?.length).toBeGreaterThanOrEqual(2);
+      expect(source).toContain(`/${locale}/guides`);
+      expect(source.match(/https:\/\//g)?.length).toBeGreaterThanOrEqual(3);
+    }
+  );
 
   it('uses only the approved official external sources', () => {
-    for (const locale of ['en', 'zh'] as const) {
+    for (const locale of locales) {
       const source = getGuide(locale, 'soldiers-and-breeding')!.source;
       const urls = [...source.matchAll(/https:\/\/[^)\s]+/g)].map((match) => match[0]);
       expect(new Set(urls)).toEqual(new Set([
