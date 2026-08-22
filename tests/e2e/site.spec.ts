@@ -28,6 +28,16 @@ test('localized pages expose the installable web app manifest', async ({page}) =
   await expect(page.locator('link[rel="manifest"]')).toHaveAttribute('href', '/site.webmanifest');
 });
 
+test('localized pages load the configured Google Analytics tag once', async ({page}) => {
+  for (const path of ['/en', '/de/guides/exploration-and-bosses']) {
+    await page.goto(path);
+    await expect(page.locator('script[src="https://www.googletagmanager.com/gtag/js?id=G-G9PKVZB3P9"]')).toHaveCount(1);
+    const configuration = page.locator('script#google-analytics');
+    await expect(configuration).toHaveCount(1);
+    expect(await configuration.textContent()).toContain("gtag('config', 'G-G9PKVZB3P9')");
+  }
+});
+
 test('home hero uses a subdued official colony image behind its content', async ({page}) => {
   await page.goto('/en');
   const hero = page.locator('.home-hero');
